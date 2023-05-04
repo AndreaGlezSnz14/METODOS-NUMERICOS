@@ -1,0 +1,37 @@
+import numpy as np                
+from tabulate import tabulate
+import matplotlib.pyplot as plt
+
+def newtonraphson(x1, es, imax):
+  x = x1                             #aproximaciones de la raiz 
+  xv =[]                             #vector que guarda las aproximaciones de la raiz 
+  ea = 2*es                          #erros absoluto 
+  eav = []                           #vector que guarda el valor absoluto 
+  i = 0                              #numero de iteraciones 
+  niter = []                         #vector del numero de iteraciones
+  fxv = []                           #vector de la funcion f(x)
+  newton_table = []                  #tabla de dtos del metodo 
+
+  newton_table.append([i, x , f1(x), f(x), "--", "--"])
+  xv.append(x)
+
+  while ea > es and i <= imax :
+    x = x - f(x)/f1(x)                #formula 
+    xv.append(x)
+    fxv.append(f1(x))
+    i += 1
+    niter.append(i)
+
+    if x != 0:
+      es = abs((xv[i] - xv[i-1]))
+      er = abs((xv[i] - xv[i-1])/xv[i])*100        #error relativo 
+      eav.append(ea)
+
+      newton_table.append([i, x, f1(x), f(x), es, er])
+
+  #tabla de datos
+  print("")
+  print("Metodo de Newton-Raphson")
+  print(tabulate(newton_table, headers = ["Iteracion", "x", "f'(x)", "e abs", "er (%)"]))
+
+  return(x, f(x))
