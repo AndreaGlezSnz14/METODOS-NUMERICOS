@@ -1,0 +1,20 @@
+def f(x):
+    y=pow(x,2)-3.0*x-4
+    return (y)
+print ("Método de la secante")
+x1=float(input('Introduce el valor de inicio x1: '))
+x0=float(input('Introduce el valor de inicio x0: '))
+erroru=float(input('Introduce el error '))
+x2=0
+i=0
+error=100
+print("(:^10)(:^10)(:^10)(:^10)(:^10)".format("i", "xi", "f(xi)", "x+1", "error"))
+while (error) >erroru :
+    xra=x2
+    x2=x1-(f(x1)*(x1-x0))/(f(x1)-f(x0))
+    error= abs(((x2-xra)/x2)*100)
+    x0 = x1 
+    x1=x2 
+    i=i+1
+    print("(:^10)(:^10.6f)(:^10.6f)(:^10.6f)(:^10.6f)".format(i, float(x0),float(f(x0)), float(x2), float(error)))
+    print("La raiz es:", x2)
